@@ -18,14 +18,19 @@ public class MemberService {
         System.out.println();
     }
     public static void startChat(String memberName){
-        System.out.println("Welcome " + memberName);
-        System.out.println("Send message -> press 1");
-        System.out.println("Exit -> press 2 in message line ");
-        actionID = scanner.nextInt();
-        if(actionID == 1) typeMessage(memberName);
-        if(actionID == 2) {
-            System.out.println("You have exited chat mode");
-            System.out.println();
+        while(true) {
+            System.out.println("Welcome " + memberName);
+            System.out.println("Send message -> press 1");
+            System.out.println("Exit -> press 2 in message line ");
+            actionID = CheckForWrongInput.checkForWrongInput();
+            if (actionID == 1) typeMessage(memberName);
+            else if (actionID == 2) {
+                System.out.println("You have exited chat mode");
+                System.out.println();
+            } else {
+                System.out.println("You didn't specify what to do asd");
+            }
+            if(actionID == 1 || actionID == 2) break;
         }
     }
     public static void typeMessage(String memberName){
