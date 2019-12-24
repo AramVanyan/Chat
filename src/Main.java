@@ -26,7 +26,7 @@ public class Main {
             }else if(input == 2){
                 ChatHistory.printChatHistory();
                 break;
-            }else System.out.println("You didn't specify what to do asd");
+            }else System.out.println("You didn't specify what to do ");
         }
     }
 }
