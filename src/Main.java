@@ -1,9 +1,11 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
+        int numberOfMembers = 0;
         Scanner scanner = new Scanner(System.in);
         System.out.print("Please enter the number of members: ");
-        int numberOfMembers = scanner.nextInt();
+        numberOfMembers = CheckForWrongInput.checkForWrongInput();
         System.out.println();
         MemberService.initializeMembers(numberOfMembers);
         String memberName;
@@ -11,7 +13,8 @@ public class Main {
             System.out.println("Start chatting -> 1");
             System.out.println("See chat history -> 2");
             System.out.println();
-            if (scanner.nextInt() == 1) {
+            int input = CheckForWrongInput.checkForWrongInput();
+            if (input == 1) {
                 System.out.print("Please enter the name of member to start chatting: ");
                 memberName = scanner.next();
                 if(MemberService.isMember(memberName)) MemberService.startChat(memberName);
@@ -20,10 +23,10 @@ public class Main {
                     System.out.println("Please try again");
                     System.out.println();
                 }
-            }else {
+            }else if(input == 2){
                 ChatHistory.printChatHistory();
                 break;
-            }
+            }else System.out.println("You didn't specify what to do asd");
         }
     }
 }
