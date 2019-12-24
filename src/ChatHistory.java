@@ -8,6 +8,8 @@ public class ChatHistory {
             System.out.println("text: " + chatHistory.get(i + 2));
             System.out.println();
         }
+        if(chatHistory.size()==0) System.out.println("There is no message yet");
+        System.out.println();
     }
     public static void addToChatStory(String...chatUnit){
         chatHistory.add(chatUnit[0]);
