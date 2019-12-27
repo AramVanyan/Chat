@@ -8,7 +8,7 @@ public class CheckForWrongInput {
                 input = Integer.parseInt(scanner.nextLine());
                 return input;
             }catch (NumberFormatException e){
-                System.out.print("Please enter number: ");
+                System.out.print("Please enter a number: ");
             }
         }
     }
