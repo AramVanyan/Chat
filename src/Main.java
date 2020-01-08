@@ -14,11 +14,11 @@ public class Main {
             System.out.println();
             int input = CheckForWrongInput.checkForWrongInput();
             if (input == 1) {
-                System.out.print("Please enter the name of member to start chatting: ");
+                System.out.print("Please enter the nickname of a member to start chatting: ");
                 memberName = scanner.next();
                 if(ChatRoomService.isUser(memberName)) ChatRoomService.startChat(memberName);
                 else {
-                    System.out.println("There is no member with name " + memberName);
+                    System.out.println("There is no member with nickname " + memberName);
                     System.out.println("Please try again");
                     System.out.println();
                 }

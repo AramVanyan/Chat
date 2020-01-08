@@ -17,7 +17,7 @@ public class ChatRoomService {
         users = new User[n];
         for (int i = 0; i < n ; i++) {
             users[i] = new User();
-            System.out.print("Please enter the name of member " + (i+1) + ": ");
+            System.out.print("Please enter the nickname of a member " + (i+1) + ": ");
             users[i].setNickName(scanner.nextLine());
             users[i].setJoinedAt(returnJoinedDate());
         }
@@ -34,7 +34,7 @@ public class ChatRoomService {
                 System.out.println("You have exited chat mode");
                 System.out.println();
             } else {
-                System.out.println("You didn't specify what to do asd");
+                System.out.println("You didn't specify what to do ");
             }
             if(actionID == 1 || actionID == 2) break;
         }
