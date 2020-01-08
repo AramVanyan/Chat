@@ -1,4 +1,3 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
@@ -7,7 +6,7 @@ public class Main {
         System.out.print("Please enter the number of members: ");
         numberOfMembers = CheckForWrongInput.checkForWrongInput();
         System.out.println();
-        MemberService.initializeMembers(numberOfMembers);
+        ChatRoomService.initializeMembers(numberOfMembers);
         String memberName;
         while(true){
             System.out.println("Start chatting -> 1");
@@ -17,7 +16,7 @@ public class Main {
             if (input == 1) {
                 System.out.print("Please enter the name of member to start chatting: ");
                 memberName = scanner.next();
-                if(MemberService.isMember(memberName)) MemberService.startChat(memberName);
+                if(ChatRoomService.isUser(memberName)) ChatRoomService.startChat(memberName);
                 else {
                     System.out.println("There is no member with name " + memberName);
                     System.out.println("Please try again");

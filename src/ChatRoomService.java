@@ -1,19 +1,25 @@
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
-public class MemberService {
-    private static int actionID;
-    private static Member[] members;
-    private static String messageOfMember;
-    private static String currentTime;
-    public static Member[] getMembers() {
-        return members;
-    }
+public class ChatRoomService {
+    private static User[] users;
     private static Scanner scanner = new Scanner(System.in);
+    public static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    public static String returnCurrentDate(){
+        Date date = new Date();
+        return formatter.format(date).toString();
+    }
+    public static Date returnJoinedDate(){
+        Date date = new Date();
+        return date;
+    }
     public static void initializeMembers(int n){
-        members = new Member[n];
+        users = new User[n];
         for (int i = 0; i < n ; i++) {
-            members[i] = new Member();
+            users[i] = new User();
             System.out.print("Please enter the name of member " + (i+1) + ": ");
-            members[i].setName(scanner.nextLine());
+            users[i].setNickName(scanner.nextLine());
+            users[i].setJoinedAt(returnJoinedDate());
         }
         System.out.println();
     }
@@ -22,7 +28,7 @@ public class MemberService {
             System.out.println("Welcome " + memberName);
             System.out.println("Send message -> press 1");
             System.out.println("Exit -> press 2 in message line ");
-            actionID = CheckForWrongInput.checkForWrongInput();
+            int actionID = CheckForWrongInput.checkForWrongInput();
             if (actionID == 1) typeMessage(memberName);
             else if (actionID == 2) {
                 System.out.println("You have exited chat mode");
@@ -37,24 +43,24 @@ public class MemberService {
         while(true){
             System.out.print(memberName + ": ");
             Scanner scanner = new Scanner(System.in);
-            messageOfMember = scanner.nextLine();
-            if(messageOfMember.equals("2")) {
+            String messageOfUser = scanner.nextLine();
+            if(messageOfUser.equals("2")) {
                 System.out.println("You have exited chat mode");
                 System.out.println();
                 break;
             };
-            currentTime = CurrentDate.returnCurrentDate();
-            if(messageOfMember.equals("")) continue;
-            ChatHistory.addToChatStory(currentTime,memberName,messageOfMember);
+            String currentTime = returnCurrentDate();
+            if(messageOfUser.equals("")) continue;
+            ChatHistory.addToChatStory(currentTime,memberName, messageOfUser);
         }
     }
-    public static boolean isMember(String nameOfMember){
-        boolean isMember = false;
-        for (int i = 0; i <members.length ; i++) {
-            if(nameOfMember.equals(members[i].getName())){
-                isMember = true;
+    public static boolean isUser(String nameOfMember){
+        boolean isUser = false;
+        for (int i = 0; i < users.length ; i++) {
+            if(nameOfMember.equals(users[i].getNickName())){
+                isUser = true;
             }
         }
-        return  isMember;
+        return  isUser;
     }
 }
